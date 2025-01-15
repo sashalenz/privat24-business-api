@@ -26,7 +26,8 @@ class Statements extends BaseModel
     /**
      * @throws Privat24BusinessApiException
      */
-    public function balance(): BalanceResponse {
+    public function balance(): BalanceResponse
+    {
         return BalanceResponse::from(
             $this
                 ->setMethod(__FUNCTION__)
@@ -37,7 +38,8 @@ class Statements extends BaseModel
     /**
      * @throws Privat24BusinessApiException
      */
-    public function interimBalance(): BalanceResponse {
+    public function interimBalance(): BalanceResponse
+    {
         return BalanceResponse::from(
             $this
                 ->setMethod('balance/interim')
@@ -48,7 +50,8 @@ class Statements extends BaseModel
     /**
      * @throws Privat24BusinessApiException
      */
-    public function finalBalance(): BalanceResponse {
+    public function finalBalance(): BalanceResponse
+    {
         return BalanceResponse::from(
             $this
                 ->setMethod('balance/final')

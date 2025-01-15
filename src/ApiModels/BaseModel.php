@@ -24,7 +24,7 @@ abstract class BaseModel
 
     protected function getHeaders(): array
     {
-        return  [
+        return [
             'User-Agent' => 'CRM',
             'token' => $this->token,
             'Content-Type' => 'application/json;charset=utf8',
@@ -87,7 +87,7 @@ abstract class BaseModel
     {
         $this->method = collect([$this->method])
             ->add($method)
-            ->implode("/");
+            ->implode('/');
 
         return $this;
     }

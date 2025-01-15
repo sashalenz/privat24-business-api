@@ -17,6 +17,5 @@ class BalanceResponse extends Data
         public string $next_page_id,
         #[DataCollectionOf(Balance::class)]
         public DataCollection $balances,
-    ) {
-    }
+    ) {}
 }

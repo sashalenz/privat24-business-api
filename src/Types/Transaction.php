@@ -32,9 +32,9 @@ class Transaction extends Data
         public string $DOC_TYP, // тип пл. документа
         public string $NUM_DOC, // номер документа
         #[WithCast(DateTimeInterfaceCast::class, format: 'd.m.Y')]
-        public Carbon $DAT_KL, //07.01.2020", // клієнтська дата
+        public Carbon $DAT_KL, // 07.01.2020", // клієнтська дата
         #[WithCast(DateTimeInterfaceCast::class, format: 'd.m.Y')]
-        public Carbon $DAT_OD, //07.01.2020", // дата валютування
+        public Carbon $DAT_OD, // 07.01.2020", // дата валютування
         public string $OSND, // підстава  платежу
         public float $SUM, // сума
         public float $SUM_E, // сума в національній валюті (грн)
@@ -42,11 +42,11 @@ class Transaction extends Data
         public string $REFN, // № з/п всередині проведення
         public string $TIM_P, // час проведення
         #[WithCast(DateTimeInterfaceCast::class, format: 'd.m.Y H:i:s')]
-        public Carbon $DATE_TIME_DAT_OD_TIM_P, //07.01.2020 02:58:00",
-        public string $ID, //557091731", // ID транзакції
+        public Carbon $DATE_TIME_DAT_OD_TIM_P, // 07.01.2020 02:58:00",
+        public string $ID, // 557091731", // ID транзакції
         public string $TRANTYPE, // тип транзакції дебет/кредит (D, C)
         public string $DLR, // референс платежу сервісу, через який створювали платіж (payment_pack_ref - у разі створення платежу через АPI «Автоклієнт»)
-        public string $TECHNICAL_TRANSACTION_ID, //557091731_online",
+        public string $TECHNICAL_TRANSACTION_ID, // 557091731_online",
         public string $UETR, // ідентифікатор тразакції
         public string $ULTMT, // тип заповненості реквізитів
         public string $PAYER_ULTMT_NCEO, // ЄДРПОУ кінцевого платника
@@ -60,5 +60,5 @@ class Transaction extends Data
         public string $STRUCT_CODE, // код виду сплати
         public string $STRUCT_TYPE, // код бюджетної класифікації
         public string $STRUCT_CATEGORY, // Інформація про податкове повідомлення (рішення)
-    ){ }
+    ) {}
 }

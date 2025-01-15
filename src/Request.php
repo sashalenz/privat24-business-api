@@ -23,8 +23,7 @@ final class Request
         private readonly array $headers,
         private readonly bool $isPost,
         private readonly ?string $proxy = null,
-    ) {
-    }
+    ) {}
 
     /**
      * @throws Privat24BusinessApiException
@@ -40,9 +39,9 @@ final class Request
                 ->baseUrl($this->baseUrl)
                 ->withHeaders($this->headers)
                 ->when(
-                    !is_null($this->proxy),
+                    ! is_null($this->proxy),
                     fn ($request) => $request->withOptions([
-                        'proxy' => $this->proxy
+                        'proxy' => $this->proxy,
                     ])
                 )
                 ->when(
@@ -61,7 +60,7 @@ final class Request
                 ->throw()
                 ->collect();
         } catch (RequestException $e) {
-            throw new Privat24BusinessApiException('API Exception: ' . $e->getMessage(), $e->getCode());
+            throw new Privat24BusinessApiException('API Exception: '.$e->getMessage(), $e->getCode());
         }
     }
 

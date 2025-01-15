@@ -22,5 +22,5 @@ class Settings extends Data
         public Carbon $server_date_time,
         #[WithCast(DateTimeInterfaceCast::class, format: 'd.m.Y H:i:s')]
         public Carbon $date_final_statement
-    ){ }
+    ) {}
 }
