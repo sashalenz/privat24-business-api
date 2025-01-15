@@ -1,17 +1,17 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "sashalenz/privat24-business-api",
+    "description": "This is my package privat24-business-api",
     "keywords": [
-        ":vendor_name",
+        "sashalenz",
         "laravel",
-        ":package_slug"
+        "privat24-business-api"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/sashalenz/privat24-business-api",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "sashalenz",
+            "email": "sashalenz@gmail.com",
             "role": "Developer"
         }
     ],
@@ -35,13 +35,13 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src/",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories/"
+            "Sashalenz\\Privat24BusinessApi\\": "src/",
+            "Sashalenz\\Privat24BusinessApi\\Database\\Factories\\": "database/factories/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests/",
+            "Sashalenz\\Privat24BusinessApi\\Tests\\": "tests/",
             "Workbench\\App\\": "workbench/app/"
         }
     },
@@ -63,10 +63,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "Sashalenz\\Privat24BusinessApi\\Privat24BusinessApiServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
+                "Privat24BusinessApi": "Sashalenz\\Privat24BusinessApi\\Facades\\Privat24BusinessApi"
             }
         }
     },

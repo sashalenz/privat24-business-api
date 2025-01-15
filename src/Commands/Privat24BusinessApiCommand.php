@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Sashalenz\Privat24BusinessApi\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class Privat24BusinessApiCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'privat24-business-api';
 
     public $description = 'My command';
 
