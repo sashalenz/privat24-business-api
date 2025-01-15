@@ -1,6 +1,5 @@
 <?php
 
-// config for Sashalenz/Privat24BusinessApi
 return [
-
+    'url' => env('PRIVAT24_API_URL', 'https://acp.privatbank.ua/api/'),
 ];
