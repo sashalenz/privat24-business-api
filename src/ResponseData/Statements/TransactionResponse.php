@@ -14,9 +14,9 @@ class TransactionResponse extends Data
         public Status $status,
         public string $type,
         public bool $exist_next_page,
-        public string $next_page_id,
         #[DataCollectionOf(Transaction::class)]
         public DataCollection $transactions,
+        public ?string $next_page_id = null,
     ) {
     }
 }

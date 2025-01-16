@@ -16,8 +16,7 @@ class Settings extends Data
         public Carbon $today,
         #[WithCast(DateTimeInterfaceCast::class, format: 'd.m.Y H:i:s')]
         public Carbon $lastday,
-        #[WithCast(DateTimeInterfaceCast::class, format: 'd.m.Y H:i:s')]
-        public Carbon $work_balance,
+        public string $work_balance,
         #[WithCast(DateTimeInterfaceCast::class, format: 'd.m.Y H:i:s')]
         public Carbon $server_date_time,
         #[WithCast(DateTimeInterfaceCast::class, format: 'd.m.Y H:i:s')]

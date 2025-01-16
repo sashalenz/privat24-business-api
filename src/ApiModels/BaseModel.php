@@ -22,6 +22,8 @@ abstract class BaseModel
 
     protected ?string $proxy = null;
 
+    protected ?Data $params = null;
+
     protected function getHeaders(): array
     {
         return  [
@@ -31,17 +33,20 @@ abstract class BaseModel
         ];
     }
 
+    protected function setParams(Data $data): self
+    {
+        $this->params = $data;
+
+        return $this;
+    }
+
     protected function getParams(): array
     {
-        if (! isset($this->params)) {
+        if (is_null($this->params)) {
             return [];
         }
 
-        if ($this->params instanceof Data) {
-            return $this->params->toArray();
-        }
-
-        return $this->params;
+        return array_filter($this->params->toArray());
     }
 
     public function cache(int $seconds = -1): self
@@ -97,8 +102,8 @@ abstract class BaseModel
      */
     protected function request(): Collection
     {
+        info(print_r($this->getParams(), true));
         $request = new Request(
-            baseUrl: config('privat24-business-api.api_url'),
             method: $this->method,
             params: $this->getParams(),
             headers: $this->getHeaders(),

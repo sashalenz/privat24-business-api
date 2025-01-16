@@ -17,7 +17,6 @@ final class Request
     private const int RETRY_SLEEP = 100;
 
     public function __construct(
-        private readonly string $baseUrl,
         private readonly string $method,
         private readonly array $params,
         private readonly array $headers,
@@ -37,7 +36,7 @@ final class Request
                     self::RETRY_TIMES,
                     self::RETRY_SLEEP
                 )
-                ->baseUrl($this->baseUrl)
+                ->baseUrl(config('privat24-business-api.api_url'))
                 ->withHeaders($this->headers)
                 ->when(
                     !is_null($this->proxy),
