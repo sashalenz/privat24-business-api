@@ -35,8 +35,7 @@ class Statements extends BaseModel
         ?string $acc = null,
         ?string $followId = null,
         ?int $limit = 20,
-    ): BalanceResponse
-    {
+    ): BalanceResponse {
         return BalanceResponse::from(
             $this
                 ->setMethod(__FUNCTION__)
@@ -58,8 +57,7 @@ class Statements extends BaseModel
         ?string $acc = null,
         ?string $followId = null,
         ?int $limit = 20,
-    ): BalanceResponse
-    {
+    ): BalanceResponse {
         return BalanceResponse::from(
             $this
                 ->setMethod('balance/interim')
@@ -79,8 +77,7 @@ class Statements extends BaseModel
         ?string $acc = null,
         ?string $followId = null,
         ?int $limit = 20,
-    ): BalanceResponse
-    {
+    ): BalanceResponse {
         return BalanceResponse::from(
             $this
                 ->setMethod('balance/final')

@@ -17,6 +17,5 @@ class TransactionResponse extends Data
         #[DataCollectionOf(Transaction::class)]
         public DataCollection $transactions,
         public ?string $next_page_id,
-    ) {
-    }
+    ) {}
 }
