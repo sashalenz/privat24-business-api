@@ -2,7 +2,6 @@
 
 namespace Sashalenz\Privat24BusinessApi;
 
-use Sashalenz\Privat24BusinessApi\Commands\Privat24BusinessApiCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 

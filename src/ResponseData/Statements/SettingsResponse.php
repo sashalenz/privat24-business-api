@@ -12,6 +12,5 @@ class SettingsResponse extends Data
         public Status $status,
         public string $type,
         public Settings $settings,
-    ) {
-    }
+    ) {}
 }
