@@ -2,6 +2,14 @@
 
 All notable changes to `privat24-business-api` will be documented in this file.
 
+## 1.0.1 - 2026-04-30
+
+### What's Changed
+
+* Bump dependabot/fetch-metadata from 2.5.0 to 3.1.0 by @dependabot[bot] in https://github.com/sashalenz/privat24-business-api/pull/12
+
+**Full Changelog**: https://github.com/sashalenz/privat24-business-api/compare/1.0.0...1.0.1
+
 ## 1.0.0 - 2026-04-30
 
 ### What's Changed
