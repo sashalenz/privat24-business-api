@@ -5,6 +5,7 @@ namespace Sashalenz\Privat24BusinessApi\Tests;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Sashalenz\Privat24BusinessApi\Privat24BusinessApiServiceProvider;
+use Spatie\LaravelData\LaravelDataServiceProvider;
 
 class TestCase extends Orchestra
 {
@@ -20,6 +21,7 @@ class TestCase extends Orchestra
     protected function getPackageProviders($app)
     {
         return [
+            LaravelDataServiceProvider::class,
             Privat24BusinessApiServiceProvider::class,
         ];
     }

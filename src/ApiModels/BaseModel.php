@@ -102,12 +102,12 @@ abstract class BaseModel
      */
     protected function request(): Collection
     {
-        info(print_r($this->getParams(), true));
         $request = new Request(
             method: $this->method,
             params: $this->getParams(),
             headers: $this->getHeaders(),
             isPost: $this->isPost,
+            proxy: $this->proxy,
         );
 
         if ($this->canBeCached) {
