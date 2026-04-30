@@ -2,6 +2,15 @@
 
 All notable changes to `privat24-business-api` will be documented in this file.
 
+## 1.0.0 - 2026-04-30
+
+### What's Changed
+
+* Bump aglipanci/laravel-pint-action from 2.5 to 2.6 by @dependabot[bot] in https://github.com/sashalenz/privat24-business-api/pull/5
+* Bump dependabot/fetch-metadata from 2.4.0 to 2.5.0 by @dependabot[bot] in https://github.com/sashalenz/privat24-business-api/pull/9
+
+**Full Changelog**: https://github.com/sashalenz/privat24-business-api/compare/0.3.0...1.0.0
+
 ## 0.3.0 - 2025-06-02
 
 ### What's Changed
