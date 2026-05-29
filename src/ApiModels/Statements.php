@@ -2,7 +2,7 @@
 
 namespace Sashalenz\Privat24BusinessApi\ApiModels;
 
-use Illuminate\Support\Carbon;
+use Carbon\Carbon;
 use Sashalenz\Privat24BusinessApi\Exceptions\Privat24BusinessApiException;
 use Sashalenz\Privat24BusinessApi\RequestData\Statements\BalanceRequest;
 use Sashalenz\Privat24BusinessApi\RequestData\Statements\TransactionsRequest;
