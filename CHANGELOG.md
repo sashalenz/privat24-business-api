@@ -2,6 +2,12 @@
 
 All notable changes to `privat24-business-api` will be documented in this file.
 
+## 1.0.2 - 2026-06-05
+
+### What's Changed
+
+* Make bank-descriptor fields on `Transaction` (`AUT_MY_*` / `AUT_CNTR_*`) nullable — Privat24 returns `null` for them on transaction types without counterparty bank info (card payments, fees, withdrawals), which previously threw a `TypeError`
+
 ## 1.0.1 - 2026-04-30
 
 ### What's Changed

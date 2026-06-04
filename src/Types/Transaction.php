@@ -14,18 +14,18 @@ use Spatie\LaravelData\Mappers\CamelCaseMapper;
 class Transaction extends Data
 {
     public function __construct(
-        public string $AUT_MY_CRF, // ЄДРПОУ одержувача
-        public string $AUT_MY_MFO, // МФО одержувача
-        public string $AUT_MY_ACC, // рахунок одержувача
-        public string $AUT_MY_NAM, // назва одержувача
-        public string $AUT_MY_MFO_NAME, // банк одержувача
-        public string $AUT_MY_MFO_CITY, // назва міста банку
-        public string $AUT_CNTR_CRF, // ЄДРПОУ контрагента
-        public string $AUT_CNTR_MFO, // МФО контрагента
-        public string $AUT_CNTR_ACC, // рахунок контрагента
-        public string $AUT_CNTR_NAM, // назва контрагента
-        public string $AUT_CNTR_MFO_NAME, // назва банку контрагента
-        public string $AUT_CNTR_MFO_CITY, // назва міста банку
+        public ?string $AUT_MY_CRF, // ЄДРПОУ одержувача
+        public ?string $AUT_MY_MFO, // МФО одержувача
+        public ?string $AUT_MY_ACC, // рахунок одержувача
+        public ?string $AUT_MY_NAM, // назва одержувача
+        public ?string $AUT_MY_MFO_NAME, // банк одержувача
+        public ?string $AUT_MY_MFO_CITY, // назва міста банку
+        public ?string $AUT_CNTR_CRF, // ЄДРПОУ контрагента
+        public ?string $AUT_CNTR_MFO, // МФО контрагента
+        public ?string $AUT_CNTR_ACC, // рахунок контрагента
+        public ?string $AUT_CNTR_NAM, // назва контрагента
+        public ?string $AUT_CNTR_MFO_NAME, // назва банку контрагента
+        public ?string $AUT_CNTR_MFO_CITY, // назва міста банку
         public Currency $CCY, // валюта
         public string $FL_REAL, // ознака реальності проведення (r,i)
         public string $PR_PR, // стан p - проводиться, t - сторнована, r - проведена, n - забракована
