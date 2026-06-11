@@ -2,6 +2,10 @@
 
 All notable changes to `privat24-business-api` will be documented in this file.
 
+## 1.1.0 - 2026-06-11
+
+**Full Changelog**: https://github.com/sashalenz/privat24-business-api/compare/1.0.2...1.1.0
+
 ## Unreleased
 
 ### Added
@@ -10,6 +14,7 @@ All notable changes to `privat24-business-api` will be documented in this file.
   - `create(CreatePaymentRequest): CreatePaymentResponse` — creates a payment in "awaiting signature" status (`payment_status: new`), returns `payment_ref`
   - `get(string $ref): GetPaymentResponse` — payment state for status tracking
   - `delete(string $ref): bool` — removes an unsigned payment
+  
 
 ### Fixed
 
