@@ -46,7 +46,12 @@ abstract class BaseModel
             return [];
         }
 
-        return array_filter($this->params->toArray());
+        // Drop only null / '' — a bare array_filter() would also drop
+        // legitimate falsy values like the string '0' or integer 0.
+        return array_filter(
+            $this->params->toArray(),
+            fn ($value) => $value !== null && $value !== ''
+        );
     }
 
     public function cache(int $seconds = -1): self

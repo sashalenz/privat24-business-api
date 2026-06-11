@@ -30,9 +30,65 @@ return [
 
 ## Usage
 
+### Виписки (statements)
+
 ```php
-$privat24BusinessApi = new Sashalenz\Privat24BusinessApi();
-echo $privat24BusinessApi->echoPhrase('Hello, Sashalenz!');
+use Sashalenz\Privat24BusinessApi\Privat24BusinessApi;
+
+// Транзакції за період (з курсорною пагінацією)
+$response = Privat24BusinessApi::statements()
+    ->token($token)
+    ->transactions($startDate, $endDate, $acc, $followId, 20);
+
+foreach ($response->transactions as $tx) {
+    // Sashalenz\Privat24BusinessApi\Types\Transaction
+}
+
+// Поточний операційний день / фінальна виписка за попередній день
+Privat24BusinessApi::statements()->token($token)->interimTransactions();
+Privat24BusinessApi::statements()->token($token)->finalTransactions();
+
+// Баланси
+Privat24BusinessApi::statements()->token($token)->balance($startDate);
+Privat24BusinessApi::statements()->token($token)->interimBalance();
+Privat24BusinessApi::statements()->token($token)->finalBalance();
+
+// Health-check: phase === 'WRK' — банк приймає запити
+Privat24BusinessApi::statements()->token($token)->settings();
+```
+
+### Платежі (proxy/payment)
+
+Створений через API платіж **не рухає кошти**: він зʼявляється у «Приват24
+для бізнесу» зі статусом `new` і чекає підпису КЕП у кабінеті. До підписання
+його можна видалити через `delete()`.
+
+```php
+use Sashalenz\Privat24BusinessApi\Privat24BusinessApi;
+use Sashalenz\Privat24BusinessApi\RequestData\Payments\CreatePaymentRequest;
+
+// Створення платіжного доручення
+$response = Privat24BusinessApi::payments()
+    ->token($token)
+    ->create(new CreatePaymentRequest(
+        document_number: '42',
+        payer_account: 'UA77305299...',          // IBAN відправника
+        payment_naming: 'ТОВ "Отримувач"',
+        payment_amount: '1250.50',               // decimal-рядок
+        payment_destination: 'Оплата за послуги згідно рахунку №42',
+        recipient_account: 'UA74305299...',      // IBAN отримувача
+        recipient_nceo: '12345678',              // ЄДРПОУ/ІПН ('0000000000' — фізособа)
+    ));
+
+$response->payment_ref;       // референс — він же REF у виписці після проведення
+$response->payment_pack_ref;
+
+// Стан платежу
+$state = Privat24BusinessApi::payments()->token($token)->get($response->payment_ref);
+$state->payment_status;       // 'new' — очікує підписання
+
+// Видалення непідписаного платежу (POST, 204)
+Privat24BusinessApi::payments()->token($token)->delete($response->payment_ref);
 ```
 
 ## Testing

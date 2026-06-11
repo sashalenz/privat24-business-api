@@ -2,6 +2,19 @@
 
 All notable changes to `privat24-business-api` will be documented in this file.
 
+## Unreleased
+
+### Added
+
+- `Privat24BusinessApi::payments()` — outgoing payment documents (`proxy/payment`):
+  - `create(CreatePaymentRequest): CreatePaymentResponse` — creates a payment in "awaiting signature" status (`payment_status: new`), returns `payment_ref`
+  - `get(string $ref): GetPaymentResponse` — payment state for status tracking
+  - `delete(string $ref): bool` — removes an unsigned payment
+
+### Fixed
+
+- POST requests now keep the `Content-Type: application/json;charset=utf8` header — `asJson()` was silently overriding it with plain `application/json` (never mattered before: every statements call is GET)
+
 ## 1.0.2 - 2026-06-05
 
 ### What's Changed

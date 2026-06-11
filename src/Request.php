@@ -45,12 +45,22 @@ final class Request
                 )
                 ->when(
                     $this->isPost,
-                    fn ($request) => $request
-                        ->asJson()
-                        ->post(
-                            $this->method,
-                            $this->params
-                        ),
+                    // bodyFormat('json'), NOT asJson(): asJson() also calls
+                    // contentType('application/json'), silently overriding the
+                    // 'application/json;charset=utf8' header the API expects.
+                    // Empty params → POST with no body at all (payment/delete
+                    // expects a truly empty body). post() can't do that — it
+                    // always wraps $data into the body format, so even an empty
+                    // array becomes the JSON string '[]'; bare send() skips the
+                    // body option entirely.
+                    fn ($request) => $this->params === []
+                        ? $request->send('POST', $this->method)
+                        : $request
+                            ->bodyFormat('json')
+                            ->post(
+                                $this->method,
+                                $this->params
+                            ),
                     fn ($request) => $request->get(
                         $this->method,
                         $this->params
