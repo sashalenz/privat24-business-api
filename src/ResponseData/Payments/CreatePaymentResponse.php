@@ -2,6 +2,7 @@
 
 namespace Sashalenz\Privat24BusinessApi\ResponseData\Payments;
 
+use Sashalenz\Privat24BusinessApi\Types\Transaction;
 use Spatie\LaravelData\Data;
 
 /**
@@ -13,7 +14,7 @@ use Spatie\LaravelData\Data;
  *
  * payment_pack_ref is the key for deterministic statement matching: for a
  * payment created through the API ("Автоклієнт"), the bank echoes it into the
- * executed transaction's DLR field ({@see \Sashalenz\Privat24BusinessApi\Types\Transaction::$DLR}).
+ * executed transaction's DLR field ({@see Transaction::$DLR}).
  */
 class CreatePaymentResponse extends Data
 {
