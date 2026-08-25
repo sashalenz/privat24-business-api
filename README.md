@@ -91,6 +91,76 @@ $state->payment_status;       // 'new' — очікує підписання
 Privat24BusinessApi::payments()->token($token)->delete($response->payment_ref);
 ```
 
+### Зарплатний проєкт і реєстри (`pay/mp`, `pay/maspay`)
+
+Реєстр — це **один документ, який платить багатьом**. У виписці він приходить
+одним дебетом, а не N.
+
+🔴 Головне, що відрізняє реєстр від поштучного платежу: рядок адресується
+**ідентифікатором людини в довіднику банку**, а не IBAN-ом. Людину з ідеальними
+реквізитами на вашому боці неможливо оплатити реєстром, доки її не заведено в
+проєкт.
+
+```php
+use Sashalenz\Privat24BusinessApi\Privat24BusinessApi;
+use Sashalenz\Privat24BusinessApi\Enums\SalaryGroupType;
+use Sashalenz\Privat24BusinessApi\RequestData\Salary\{AddRecordRequest, CreatePacketRequest, UpdateReceiverRequest};
+
+$api = Privat24BusinessApi::salaryProject()->token($token);
+
+// Проєкти клієнта — разом із комісією банку (rko) за кожним
+$api->groups();
+
+// Знайти людину в довіднику (filter шукає по ПІБ / ІПН / табельному)
+$found = $api->receivers(SalaryGroupType::SALARY, filter: '1234567890');
+
+// Або завести. `id` з відповіді — це те, чим адресується рядок реєстру:
+// збережіть його у себе, іншого способу знайти людину потім немає.
+$receiverId = $api->updateReceiver(new UpdateReceiverRequest(
+    pan: 'UA743052990000026002000000002',
+    group: SalaryGroupType::SALARY,
+    fio: ['Мельник', 'Тарас'],
+    inn: '9876543210',
+    tabn: '7',
+))->id;
+```
+
+```php
+$registers = Privat24BusinessApi::salaryRegisters()->token($token);
+
+$packet = $registers->create(new CreatePacketRequest(
+    group: SalaryGroupType::SALARY,
+    salary: true,                       // це саме зарплата, а не інша масова виплата
+    packetName: 'Тиждень 34',
+));
+
+$registers->addRecord($packet->reference, new AddRecordRequest(
+    receiver: $receiverId,
+    amount: 1250.50,
+    comment: 'Зарплата за тиждень 34',
+));
+
+$registers->validatePacket($packet->reference);   // віддати банку на перевірку
+
+$registers->records($packet->reference);          // статус кожного рядка + errorCode
+$registers->header($packet->reference)->status;   // PacketStatus
+```
+
+**Підпис.** Як і поштучний платіж, реєстр нічого не рухає, доки його не
+підписали. На відміну від поштучного платежу, ендпоїнта підпису для реєстру
+немає — підписується він у «Приват24 для бізнесу», двома підписами
+(`SB` бухгалтер → `SD` директор → `S$` обидва).
+
+**Редагування.** Рядки додаються й прибираються лише поки пакет у
+`PacketStatus::CREATED` (`isEditable()`). Після перевірки рядок, який банк не
+прийняв, лишається у `N$` з `errorCode` — його можна виправити, не втрачаючи
+весь пакет.
+
+⚠️ **Невідоме, і воно вирішує звірку.** Чи `reference` пакета доїжджає у виписку
+як `DLR` дебету — так, як це робить `payment_pack_ref` поштучного платежу, —
+документація не каже. Доки один реальний реєстр цього не покаже, не будуйте
+звірку на припущенні, що доїжджає.
+
 ## Testing
 
 ```bash

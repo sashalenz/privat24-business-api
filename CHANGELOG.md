@@ -2,6 +2,15 @@
 
 All notable changes to `privat24-business-api` will be documented in this file.
 
+## Unreleased
+
+- **Зарплатний проєкт і реєстри.** `Privat24BusinessApi::salaryProject()` — довідник отримувачів
+  (`pay/mp/list-groups`, `list-receivers`, `update-receiver`); `Privat24BusinessApi::salaryRegisters()` —
+  пакети (`pay/maspay/create`, `/add`, `/remove`, `/validate`, `/header`, `/content`,
+  `pay/apay24/packets/list`).
+- Реєстр адресує рядок ідентифікатором людини з довідника банку, а не IBAN-ом — див. README.
+- Енуми `SalaryGroupType`, `PacketStatus` (з `isEditable()` / `isFinal()`), `PacketRecordStatus`.
+
 ## 1.1.0 - 2026-06-11
 
 **Full Changelog**: https://github.com/sashalenz/privat24-business-api/compare/1.0.2...1.1.0
