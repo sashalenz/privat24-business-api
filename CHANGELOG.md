@@ -2,6 +2,10 @@
 
 All notable changes to `privat24-business-api` will be documented in this file.
 
+## 1.2.0 - 2026-08-25
+
+**Full Changelog**: https://github.com/sashalenz/privat24-business-api/compare/1.1.0...1.2.0
+
 ## Unreleased
 
 - **Зарплатний проєкт і реєстри.** `Privat24BusinessApi::salaryProject()` — довідник отримувачів
