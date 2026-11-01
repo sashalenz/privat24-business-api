@@ -105,7 +105,7 @@ abstract class BaseModel
     /**
      * @throws Privat24BusinessApiException
      */
-    protected function request(): Collection
+    protected function request(?string $listKey = null): Collection
     {
         $request = new Request(
             method: $this->method,
@@ -113,6 +113,7 @@ abstract class BaseModel
             headers: $this->getHeaders(),
             isPost: $this->isPost,
             proxy: $this->proxy,
+            listKey: $listKey,
         );
 
         if ($this->canBeCached) {
