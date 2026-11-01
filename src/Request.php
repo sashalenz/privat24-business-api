@@ -7,6 +7,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Sashalenz\Privat24BusinessApi\Exceptions\Privat24BusinessApiException;
+use Sashalenz\Privat24BusinessApi\ResponseData\Salary\ListResponse;
 
 final class Request
 {
@@ -22,6 +23,7 @@ final class Request
         private readonly array $headers,
         private readonly bool $isPost,
         private readonly ?string $proxy = null,
+        private readonly ?string $listKey = null,
     ) {}
 
     /**
@@ -30,7 +32,7 @@ final class Request
     public function make(): Collection
     {
         try {
-            return Http::timeout(self::TIMEOUT)
+            $response = Http::timeout(self::TIMEOUT)
                 ->retry(
                     self::RETRY_TIMES,
                     self::RETRY_SLEEP
@@ -65,10 +67,21 @@ final class Request
                         $this->method,
                         $this->params
                     ),
-                )
-                ->throw()
-                ->collect();
+                );
+
+            if ($this->listKey !== null) {
+                $rows = ListResponse::rows($response->body(), $this->listKey);
+                $response->throw();
+
+                return collect($rows);
+            }
+
+            return $response->throw()->collect();
         } catch (RequestException $e) {
+            if ($this->listKey !== null) {
+                ListResponse::rows($e->response->body(), $this->listKey);
+            }
+
             throw new Privat24BusinessApiException('API Exception: '.$e->getMessage(), $e->getCode());
         }
     }

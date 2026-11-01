@@ -8,6 +8,8 @@ All notable changes to `privat24-business-api` will be documented in this file.
 
 ## Unreleased
 
+- Fix salary register lists: unwrap packets/records/data envelopes, ignore non-array rows, and report bank string/error responses as Privat24BusinessApiException.
+
 - **Зарплатний проєкт і реєстри.** `Privat24BusinessApi::salaryProject()` — довідник отримувачів
   (`pay/mp/list-groups`, `list-receivers`, `update-receiver`); `Privat24BusinessApi::salaryRegisters()` —
   пакети (`pay/maspay/create`, `/add`, `/remove`, `/validate`, `/header`, `/content`,

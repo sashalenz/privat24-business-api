@@ -140,7 +140,7 @@ class SalaryRegisters extends BaseModel
         return $this
             ->setMethod('maspay/'.rawurlencode($reference).'/content')
             ->setParams(new ListPacketsRequest(page: $page, pageSize: $pageSize))
-            ->request()
+            ->request('records')
             ->map(fn (array $row) => PacketRecord::from($row));
     }
 
@@ -167,7 +167,7 @@ class SalaryRegisters extends BaseModel
                 from: $from,
                 to: $to,
             ))
-            ->request()
+            ->request('packets')
             ->map(fn (array $row) => Packet::from($row));
     }
 }
