@@ -2,6 +2,10 @@
 
 All notable changes to `privat24-business-api` will be documented in this file.
 
+## 1.2.1 - 2026-11-01
+
+Fix salary register lists: unwrap packets/records/data envelopes, ignore non-array rows, report bank string/error responses as Privat24BusinessApiException.
+
 ## 1.2.0 - 2026-08-25
 
 **Full Changelog**: https://github.com/sashalenz/privat24-business-api/compare/1.1.0...1.2.0
@@ -9,13 +13,16 @@ All notable changes to `privat24-business-api` will be documented in this file.
 ## Unreleased
 
 - Fix salary register lists: unwrap packets/records/data envelopes, ignore non-array rows, and report bank string/error responses as Privat24BusinessApiException.
-
+  
 - **Зарплатний проєкт і реєстри.** `Privat24BusinessApi::salaryProject()` — довідник отримувачів
   (`pay/mp/list-groups`, `list-receivers`, `update-receiver`); `Privat24BusinessApi::salaryRegisters()` —
   пакети (`pay/maspay/create`, `/add`, `/remove`, `/validate`, `/header`, `/content`,
   `pay/apay24/packets/list`).
+  
 - Реєстр адресує рядок ідентифікатором людини з довідника банку, а не IBAN-ом — див. README.
+  
 - Енуми `SalaryGroupType`, `PacketStatus` (з `isEditable()` / `isFinal()`), `PacketRecordStatus`.
+  
 
 ## 1.1.0 - 2026-06-11
 
